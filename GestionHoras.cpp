@@ -52,8 +52,8 @@ int main(){
 	
 	int op=0;	
 	
-	char usuario[6];	
-	char pass[6];
+	char usuario[20];	
+	char pass[7];
 	int cantcaracteres;
 	bool login=false;
 	
@@ -63,12 +63,12 @@ int main(){
 	
 	
 		printf("Usuario: ");
-		gets(usuario);
+		scanf("%s",usuario);
 		
 	
 	do{
 		printf("Contrasena: ");
-		scanf("%s",&pass);
+		scanf("%s",pass);
 		cantcaracteres = strlen(pass);
 	}while(cantcaracteres!=6);
 	
