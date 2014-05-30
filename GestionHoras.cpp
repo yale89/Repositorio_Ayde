@@ -4,28 +4,40 @@
 #include <string.h>
 
 typedef struct {
-	int cod;
-	char nombre[12];
-	char contrasenia[12];
+	int iduser;
+	char nombre[20];
+	char contrasenia[20];
 	
 }TRegUsuarios;
 
 //Variables Globales
-TRegUsuarios tablaUsuarios[5000];
+TRegUsuarios tablaUsuarios[100];
 
 FILE * fusuarios;
 int cant = 0;
 
 //Funciones
 
-void menu_ppal (){
+void alta_usuario (){
+	
+	
+	
 	system ("cls");
-	cant = cant +1;
-	printf("------------------------GESTION HORAS--------------------------------------------------------\n");
+	cant = cant + 1;
+	printf("---REGISTRO DE USUARIO---\n");
+	
+
 	printf ("NOMBRE DE USUARIO:  \n");
-	scanf ("%r",&tablaUsuarios[cant].nombre);
-	printf ("CONTRASEÑA: ");
-	scanf ("%r",&tablaUsuarios[cant].contrasenia);	
+	scanf ("%s",&tablaUsuarios[cant].nombre);
+	
+
+
+	printf ("CONTRASENIA: ");
+	scanf ("%s",&tablaUsuarios[cant].contrasenia);
+	
+	
+	
+	tablaUsuarios[cant].iduser=cant;	
 	
 	//guardo en el archivo 
 	fusuarios = fopen("usuarios.dat","a+");
@@ -40,7 +52,53 @@ int main(){
 	
 	int op=0;	
 	
-	menu_ppal();
+	char usuario[6];	
+	char pass[6];
+	int cantcaracteres;
+	bool login=false;
+	
+	printf("--BIENVENIDO AL SISTEMA DE GESTION DE HORAS--\n\n");
+	printf("Debe iniciar sesion para acceder al sistema.\n\n");
+	
+	
+	
+		printf("Usuario: ");
+		gets(usuario);
+		
+	
+	do{
+		printf("Contrasena: ");
+		scanf("%s",&pass);
+		cantcaracteres = strlen(pass);
+	}while(cantcaracteres!=6);
+	
+	if(strcmp(pass,"1234qw")==0){
+		if(strcmp(usuario,"leandro")==0){
+			printf("Estas logeado");
+			login=true;
+		}else{
+			printf("Usuario o contraseña incorrectos!");	
+		}
+	}else{
+		printf("Usuario o contraseña incorrectos!");
+	}
+	
+	if(login==true){
+		switch (op){
+			case 1:{
+				alta_usuario();
+				break;
+			}
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+
 	
 	return 0;
 	
